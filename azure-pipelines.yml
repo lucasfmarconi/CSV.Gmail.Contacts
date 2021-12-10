@@ -44,5 +44,7 @@ steps:
       **\*Tests.dll
       !**\*TestAdapter.dll
       !**\obj\**
+      !**\bin\**\ref\**
+    diagnosticsEnabled: True
     searchFolder: '$(System.DefaultWorkingDirectory)'
     codeCoverageEnabled: true
