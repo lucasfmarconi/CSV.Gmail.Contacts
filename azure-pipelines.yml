@@ -24,11 +24,27 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: Bash@3
+  inputs:
+    filePath: '$(System.DefaultWorkingDirectory)'
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      pwd
+      
+      ls -lah
+  
+
 - task: VSTest@2
+  displayName: 'Test solution'
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
       **\*Tests.dll
       !**\*TestAdapter.dll
       !**\obj\**
+      !**\bin\**\ref\**
+    diagnosticsEnabled: True
     searchFolder: '$(System.DefaultWorkingDirectory)'
+    codeCoverageEnabled: true
