@@ -3,7 +3,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-18.04'
 
 variables:
   solution: '**/*.sln'
@@ -24,7 +24,19 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      pwd
+      
+      ls -lah
+  
+
 - task: VSTest@2
+  displayName: 'Test solution'
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
